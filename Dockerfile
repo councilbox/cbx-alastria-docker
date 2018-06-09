@@ -24,32 +24,28 @@ ARG ALASTRIA_BRANCH=develop
 RUN \
     apt-get update && apt-get -y upgrade \
     && apt-get -y install \
-        unzip \
+        git \
         curl \
-    && curl -L https://github.com/alastria/alastria-node/archive/$ALASTRIA_BRANCH.zip > $ALASTRIA_BRANCH.zip \
-    && unzip $ALASTRIA_BRANCH.zip \
-    && rm $ALASTRIA_BRANCH.zip \
-    && mv alastria-node-* /opt/alastria \
+    && git clone https://github.com/alastria/alastria-node \
+    && mv alastria-node /opt/alastria \
     && cd /opt/alastria/scripts \
     && sed -i 's/sudo//g' bootstrap.sh \
     && sed -i 's/gopath$//' bootstrap.sh \
     && sed -i 's@~/alastria-node@/opt/alastria@g' init.sh \
-    && bash bootstrap.sh \
+    && ./bootstrap.sh \
+    && ./monitor.sh build \
     && apt-get -y purge \
         unzip \
     && apt-get autoremove \
     && apt-get clean
 
-ENV \
-    GOROOT=/usr/local/go \
-    GOPATH=$HOME/alastria/workspace \
-    PATH=$GOROOT/bin:$GOPATH/bin:/opt/alastria/scripts:$PATH
+ENV GOROOT=/usr/local/go \
+    GOPATH=$HOME/alastria/workspace
+ENV PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 VOLUME ~/alastria
 EXPOSE 9000 21000 21000/udp 22000 41000
 WORKDIR /opt/alastria/scripts
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh
-RUN chmod u+x /usr/bin/entrypoint.sh
-
 ENTRYPOINT ["entrypoint.sh"]
