@@ -33,7 +33,6 @@ RUN \
     && sed -i 's/gopath$//' bootstrap.sh \
     && sed -i 's@~/alastria-node@/opt/alastria@g' init.sh \
     && ./bootstrap.sh \
-    && ./monitor.sh build \
     && apt-get -y purge \
         unzip \
     && apt-get autoremove \
@@ -44,7 +43,7 @@ ENV GOROOT=/usr/local/go \
 ENV PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 VOLUME ~/alastria
-EXPOSE 9000 21000 21000/udp 22000 41000
+EXPOSE 9000 21000 21000/udp 22000 41000 8443
 WORKDIR /opt/alastria/scripts
 
 COPY entrypoint.sh /usr/bin/entrypoint.sh

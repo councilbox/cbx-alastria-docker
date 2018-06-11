@@ -8,6 +8,7 @@ else
 fi
 
 ./start.sh
+./monitor.sh build
 ./monitor.sh start
 
 exec bash --login -i
