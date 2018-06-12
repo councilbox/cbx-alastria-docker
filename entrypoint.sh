@@ -11,7 +11,7 @@ fi
 
 # Build the monitor the first time
 if [ ! -f ~/MONITOR ]; then
-    ./monitor.sh build
+    ./monitor.sh build && touch ~/MONITOR
 fi
 
 ./start.sh
