@@ -1,6 +1,5 @@
 #!/bin/bash
 NODE_NAME=REG_brunneis_TestNet_2_4_00
-
 cd /opt/alastria/scripts
 
 # Backup mode if the identity exists

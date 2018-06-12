@@ -44,7 +44,6 @@ ENV PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 VOLUME ~/alastria
 EXPOSE 9000 21000 21000/udp 22000 8443
-WORKDIR /opt/alastria/scripts
 
 COPY entrypoint.sh /usr/bin/
 ENTRYPOINT ["entrypoint.sh"]
