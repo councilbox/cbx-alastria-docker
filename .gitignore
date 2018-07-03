@@ -1,3 +1,4 @@
 DATA_DIR
 NODE_NAME
-alastria-node
+alastria-node/
+backup/
