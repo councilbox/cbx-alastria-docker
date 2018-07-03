@@ -1,3 +1,3 @@
 #!/bin/bash
-docker build -t brunneis/alastria .
-docker push brunneis/alastria
+docker build -t councilbox/alastria .
+docker push councilbox/alastria
