@@ -6,3 +6,8 @@
 2. Create a file called `NODE_NAME` with only the name of your node as content.
 3. Optionally, create a file called `DATA_DIR` with the directory path where the node's data will be stored.
 4. Execute the `launch.sh` script.
+
+## Backup keys and chain status
+```bash
+./backup.sh
+```
