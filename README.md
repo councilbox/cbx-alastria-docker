@@ -7,7 +7,12 @@
 3. Optionally, create a file called `DATA_DIR` with the directory path where the node's data will be stored.
 4. Execute the `launch.sh` script.
 
-## Backup keys and chain status
+## Backup keys
 ```bash
 ./backup.sh
+```
+
+## Backup keys and chain data
+```bash
+./backup.sh all
 ```
