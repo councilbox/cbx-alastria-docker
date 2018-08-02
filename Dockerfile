@@ -19,6 +19,10 @@ MAINTAINER "Rodrigo Martínez" <rodrigo.martinez@councilbox.com>
 # ALASTRIA NODE
 ################################################
 
+ENV GOROOT=/usr/local/go \
+    GOPATH=/opt/golang
+ENV PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+
 ARG ALASTRIA_BRANCH=develop
 
 RUN \
@@ -34,16 +38,9 @@ RUN \
     && sed -i 's/gopath$//' bootstrap.sh \
     && sed -i 's@~/alastria-node@/opt/alastria-node@g' init.sh \
     && ./bootstrap.sh \
+    && ./monitor.sh build \
     && apt-get autoremove \
     && apt-get clean
-
-ENV GOROOT=/usr/local/go \
-    GOPATH=/opt/golang
-ENV PATH=$GOROOT/bin:$GOPATH/bin:$PATH
-
-RUN cd /opt/alastria-node/scripts && ./monitor.sh build
-
-
 
 VOLUME /root/alastria
 EXPOSE 9000 21000 21000/udp 22000 8443
