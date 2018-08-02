@@ -6,6 +6,9 @@ DATA_DIR=${DATA_DIR:-$WORK_DIR}
 NODE_NAME="$(cat NODE_NAME 2> /dev/null)"
 NODE_NAME=${NODE_NAME:-REG_UNNAMED_TestNet_2_4_00}
 
+NODE_TYPE="$(cat NODE_TYPE 2> /dev/null)"
+NODE_TYPE=${NODE_TYPE:-general}
+
 docker rm -f alastria
 
 docker run -tid \
@@ -17,4 +20,4 @@ docker run -tid \
 -p 8443:8443 \
 --restart unless-stopped \
 --name alastria \
-councilbox/alastria $NODE_NAME
+councilbox/alastria $NODE_TYPE $NODE_NAME

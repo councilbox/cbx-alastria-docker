@@ -22,28 +22,33 @@ MAINTAINER "Rodrigo Martínez" <rodrigo.martinez@councilbox.com>
 ARG ALASTRIA_BRANCH=develop
 
 RUN \
-    apt-get update && apt-get -y upgrade \
+    apt-get update \
+    && apt-get -y upgrade \
     && apt-get -y install \
         git \
         curl \
-    && git clone https://github.com/alastria/alastria-node \
-    && mv alastria-node /opt/alastria \
-    && cd /opt/alastria/scripts \
+    && cd /opt \
+    && git clone -b $ALASTRIA_BRANCH https://github.com/alastria/alastria-node \
+    && cd alastria-node/scripts \
     && sed -i 's/sudo//g' bootstrap.sh \
     && sed -i 's/gopath$//' bootstrap.sh \
-    && sed -i 's@~/alastria-node@/opt/alastria@g' init.sh \
+    && sed -i 's@~/alastria-node@/opt/alastria-node@g' init.sh \
     && ./bootstrap.sh \
-    && apt-get -y purge \
-        unzip \
     && apt-get autoremove \
     && apt-get clean
 
 ENV GOROOT=/usr/local/go \
-    GOPATH=$HOME/alastria/workspace
+    GOPATH=/opt/golang
 ENV PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
-VOLUME ~/alastria
+RUN cd /opt/alastria-node/scripts && ./monitor.sh build
+
+
+
+VOLUME /root/alastria
 EXPOSE 9000 21000 21000/udp 22000 8443
 
 COPY entrypoint.sh /usr/bin/
+WORKDIR /opt/alastria-node/scripts
 ENTRYPOINT ["entrypoint.sh"]
+CMD ["general"]

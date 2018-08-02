@@ -1,20 +1,13 @@
 #!/bin/bash
-NODE_NAME=$1
-cd /opt/alastria/scripts
+NODE_TYPE=$1
+NODE_NAME=$2
 
 # Backup mode if the identity exists
 if [ ! -f ~/alastria/data/IDENTITY ]; then
-    ./init.sh auto general $NODE_NAME
+    ./init.sh auto $NODE_TYPE $NODE_NAME
 elif [ ! -f ~/alastria/data/INITIALIZED ]; then
-    ./init.sh backup general $NODE_NAME && touch ~/alastria/data/INITIALIZED
+    ./init.sh backup $NODE_TYPE $NODE_NAME && touch ~/alastria/data/INITIALIZED
 fi
 
-# Build the monitor the first time
-if [ ! -f ~/MONITOR ]; then
-    ./monitor.sh build && touch ~/MONITOR
-fi
-
-./start.sh
 ./monitor.sh start
-
-exec bash --login -i
+exec ./start.sh --watch
