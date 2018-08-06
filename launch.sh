@@ -17,5 +17,5 @@ docker run -tid \
 -p 9000:9000 \
 -p 8443:8443 \
 --restart unless-stopped \
---name alastria \
+--name $NODE_NAME \
 councilbox/alastria $NODE_TYPE $NODE_NAME

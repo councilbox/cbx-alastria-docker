@@ -19,11 +19,14 @@ MAINTAINER "Rodrigo Martínez" <rodrigo.martinez@councilbox.com>
 # ALASTRIA NODE
 ################################################
 
-ENV GOROOT=/usr/local/go \
-    GOPATH=/opt/golang
-ENV PATH=$GOROOT/bin:$GOPATH/bin:$PATH
-
+ARG DOCKER_VERSION=latest
 ARG ALASTRIA_BRANCH=develop
+
+ENV \
+    GOROOT=/usr/local/go \
+    GOPATH=/opt/golang \
+    PATH=/usr/local/go/bin:/opt/golang/bin:$PATH \
+    DOCKER_VERSION=$DOCKER_VERSION
 
 RUN \
     apt-get update \
@@ -37,6 +40,8 @@ RUN \
     && sed -i 's/sudo//g' bootstrap.sh \
     && sed -i 's/gopath$//' bootstrap.sh \
     && sed -i 's@~/alastria-node@/opt/alastria-node@g' init.sh \
+    && sed -i 's@~/alastria-node@/opt/alastria-node@g' restart.sh \
+    && sed -i 's@~/alastria-node@/opt/alastria-node@g' update.sh \
     && ./bootstrap.sh \
     && ./monitor.sh build \
     && apt-get autoremove \
