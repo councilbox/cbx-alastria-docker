@@ -5,14 +5,14 @@
 ```
 docker build \
 --build-arg DOCKER_VERSION=latest \
--t alastria/alastria-node:latest .
+-t councilbox/alastria-node:latest .
 ```
 ### Node with monitor
 ```
 docker build \
 --build-arg DOCKER_VERSION=latest \
 --build-arg MONITOR_ENABLED=1 \
--t alastria/alastria-node:latest-monitor .
+-t councilbox/alastria-node:latest-monitor .
 ```
 
 ## Launch a node manually
@@ -29,7 +29,7 @@ docker run -tid \
 -e NODE_NAME=<node_name> \
 --restart unless-stopped \
 --name alastria-node \
-alastria/alastria-node
+councilbox/alastria-node
 ```
 
 ## Launch a node with `launch.sh`

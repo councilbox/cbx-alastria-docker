@@ -1,4 +1,4 @@
 #!/bin/bash
-docker pull alastria/alastria-node
+docker pull councilbox/alastria-node
 ./destroy.sh
 ./launch.sh

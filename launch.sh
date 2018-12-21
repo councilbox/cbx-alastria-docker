@@ -21,4 +21,4 @@ docker run -tid \
 -e NODE_TYPE=$NODE_TYPE \
 -e NODE_NAME=$NODE_NAME \
 $@ \
-alastria/alastria-node
+councilbox/alastria-node
