@@ -1,4 +1,6 @@
 DATA_DIR
 NODE_NAME
 alastria-node/
-backup/
+test-launch.sh
+backups/
+alastria/
