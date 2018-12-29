@@ -21,4 +21,4 @@ docker run -tid \
 -e NODE_TYPE=$NODE_TYPE \
 -e NODE_NAME=$NODE_NAME \
 $@ \
-councilbox/alastria-node
+councilbox/alastria-node:latest-monitor
