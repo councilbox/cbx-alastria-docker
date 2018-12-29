@@ -16,7 +16,7 @@ docker run -tid \
 -p 22000:22000 \
 -p 9000:9000 \
 -p 8443:8443 \
---restart unless-stopped \
+--restart always \
 --name $NODE_NAME \
 -e NODE_TYPE=$NODE_TYPE \
 -e NODE_NAME=$NODE_NAME \
