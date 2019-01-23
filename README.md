@@ -3,17 +3,12 @@
 ## Build the image
 ### Node with monitor
 ```
-docker build \
---build-arg DOCKER_VERSION=latest \
--t alastria-node .
+docker build -t alastria-node .
 ```
 
 ### Node without monitor
 ```
-docker build \
---build-arg DOCKER_VERSION=latest \
---build-arg MONITOR_ENABLED=0 \
--t alastria-node .
+docker build --build-arg MONITOR_ENABLED=0 -t alastria-node .
 ```
 
 ## Launch a node manually
