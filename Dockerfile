@@ -41,7 +41,7 @@ RUN \
     && sed -i 's@~/alastria-node@/opt/alastria-node@g' update.sh \
     && ./bootstrap.sh
 
-ARG MONITOR_ENABLED=0
+ARG MONITOR_ENABLED=1
 ENV \
     GOROOT=/usr/local/go \
     GOPATH=/opt/golang \
@@ -58,5 +58,5 @@ RUN \
 VOLUME /root/alastria
 EXPOSE 9000 21000 21000/udp 22000 8443
 
-COPY entrypoint.sh /usr/bin/
+COPY entrypoint.sh suicide.sh /usr/bin/
 ENTRYPOINT ["entrypoint.sh"]

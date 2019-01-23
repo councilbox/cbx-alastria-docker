@@ -26,4 +26,6 @@ if [ $MONITOR_ENABLED -eq 1 ]; then
     ./monitor.sh start
 fi
 
-exec ./start.sh --watch
+suicide.sh &
+
+exec /bin/bash start.sh --watch

@@ -5,13 +5,13 @@
 ```
 docker build \
 --build-arg DOCKER_VERSION=latest \
+--build-arg MONITOR_ENABLED=0 \
 -t councilbox/alastria-node:latest .
 ```
 ### Node with monitor
 ```
 docker build \
 --build-arg DOCKER_VERSION=latest \
---build-arg MONITOR_ENABLED=1 \
 -t councilbox/alastria-node:latest-monitor .
 ```
 
