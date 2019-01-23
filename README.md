@@ -1,18 +1,19 @@
 # alastria-docker
 
 ## Build the image
+### Node with monitor
+```
+docker build \
+--build-arg DOCKER_VERSION=latest \
+-t alastria-node .
+```
+
 ### Node without monitor
 ```
 docker build \
 --build-arg DOCKER_VERSION=latest \
 --build-arg MONITOR_ENABLED=0 \
--t councilbox/alastria-node:latest .
-```
-### Node with monitor
-```
-docker build \
---build-arg DOCKER_VERSION=latest \
--t councilbox/alastria-node:latest-monitor .
+-t alastria-node .
 ```
 
 ## Launch a node manually
@@ -32,7 +33,7 @@ docker run -tid \
 councilbox/alastria-node
 ```
 
-## Launch a node with `launch.sh`
+## Launch a node with the `launch.sh` script
 1. Clone this repository with `git clone https://github.com/councilbox/cbx-alastria-docker`.
 2. Create a file called `NODE_NAME` with only the name of your node as content.
 3. Create a file called `NODE_TYPE` with the node type `general` or `validator`.
