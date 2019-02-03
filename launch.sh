@@ -17,8 +17,9 @@ docker run -tid \
 -p 9000:9000 \
 -p 8443:8443 \
 --restart always \
+--ulimit nofile=10000 \
 --name $NODE_NAME \
 -e NODE_TYPE=$NODE_TYPE \
 -e NODE_NAME=$NODE_NAME \
 $@ \
-councilbox/alastria-node:latest-monitor
+councilbox/alastria-node:latest
