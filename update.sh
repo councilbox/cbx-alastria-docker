@@ -1,4 +1,5 @@
 #!/bin/bash
-docker pull councilbox/alastria-node
+source env.sh
+docker pull $DOCKER_IMAGE
 ./destroy.sh
 ./launch.sh
