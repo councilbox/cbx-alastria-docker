@@ -12,6 +12,5 @@ while(true); do
   if [ ! $(is_connected) -o "$(is_stuck "retrieved hash chain is invalid")" -o "$(is_stuck "too many open files")" ]; then
       kill $(ps -aux | awk '{print $2}' | tr " " "\n" | tail -n +2)
   fi
-  echo "Loop"
   sleep 5
 done
